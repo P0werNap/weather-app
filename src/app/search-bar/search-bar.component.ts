@@ -23,7 +23,7 @@ export class SearchBarComponent implements OnInit {
     const query = event.target.value.toLowerCase();
     if (query.length > 2) {
       this.weatherService.getCurrentWeather(query).subscribe(data => {
-        this.suggestions = data.data; // Assuming 'data.data' contains the array of city weather data
+        this.suggestions = data.data;
       });
     } else {
       this.suggestions = [];
