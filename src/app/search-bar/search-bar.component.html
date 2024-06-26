@@ -1,8 +1,13 @@
 <div class="search-bar">
-  <input type="text" (input)="onSearch($event)" placeholder="Search for a city...">
-  <ul *ngIf="suggestions.length > 0">
-    <li *ngFor="let city of suggestions" (click)="selectCity(city)">
-      {{ city.city_name }}, {{ city.country_code }}
-    </li>
-  </ul>
+  <div class="search-icon" (click)="toggleSearch()">
+    <i class="fas fa-search"></i>
+  </div>
+  <div *ngIf="showSearch" class="search-input">
+    <input type="text" (input)="onSearch($event)" placeholder="Search for a city...">
+    <ul class="suggestions" *ngIf="suggestions.length > 0">
+      <li *ngFor="let city of suggestions" (click)="selectCity(city)">
+        {{ city.city_name }}, {{ city.country_code }}
+      </li>
+    </ul>
+  </div>
 </div>

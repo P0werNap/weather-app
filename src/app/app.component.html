@@ -1,7 +1,14 @@
 <header>
-  Simple Weather
+  <div class="title">Simple Weather</div>
+  <app-search-bar (weatherData)="onWeatherDataReceived($event)"></app-search-bar>
 </header>
-<app-search-bar (weatherData)="onWeatherDataReceived($event)"></app-search-bar>
+<nav class="city-tabs">
+  <ul>
+    <li [class.active]="selectedCity === 'Rio de Janeiro'" (click)="onCitySelected('Rio de Janeiro')">Rio de Janeiro</li>
+    <li [class.active]="selectedCity === 'Beijing'" (click)="onCitySelected('Beijing')">Beijing</li>
+    <li [class.active]="selectedCity === 'Los Angeles'" (click)="onCitySelected('Los Angeles')">Los Angeles</li>
+  </ul>
+</nav>
 <div class="weather-container">
   <app-weather-details [weatherData]="currentWeatherData"></app-weather-details>
 </div>

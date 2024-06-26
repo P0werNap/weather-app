@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges } from '@angular/core';
+import { WeatherService } from '../weather.service';
 
 @Component({
   selector: 'app-weather-details',
@@ -7,6 +8,27 @@ import { Component, Input, OnChanges } from '@angular/core';
 })
 export class WeatherDetailsComponent implements OnChanges {
   @Input() weatherData: any;
+  hourlyForecast: any[] = [];
+  dailyForecast: any[] = [];
 
-  ngOnChanges() {}
+  constructor(private weatherService: WeatherService) {}
+
+  ngOnChanges() {
+    if (this.weatherData) {
+      this.fetchHourlyForecast();
+      this.fetchDailyForecast();
+    }
+  }
+
+  fetchHourlyForecast() {
+    this.weatherService.getHourlyForecast(this.weatherData.city_name).subscribe(data => {
+      this.hourlyForecast = data.data;
+    });
+  }
+
+  fetchDailyForecast() {
+    this.weatherService.getDailyForecast(this.weatherData.city_name).subscribe(data => {
+      this.dailyForecast = data.data;
+    });
+  }
 }

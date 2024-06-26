@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const API_KEY = '3822b1a7b88b4abdb179ac452cd51cd0';
+const API_KEY = '';
 const BASE_URL = 'https://api.weatherbit.io/v2.0';
 
 @Injectable({
@@ -19,18 +19,24 @@ export class WeatherService {
       }
     });
   }
-}
 
+  getHourlyForecast(city: string): Observable<any> {
+    return this.http.get(`${BASE_URL}/forecast/hourly`, {
+      params: {
+        city: city,
+        key: API_KEY,
+        hours: 6 // Fetch the next 6 hours
+      }
+    });
+  }
 
-export interface WeatherData {
-  list: {
-    dt_txt: string;
-    main: {
-      temp: number;
-    };
-    weather: {
-      icon: string;
-      description: string;
-    }[];
-  }[];
+  getDailyForecast(city: string): Observable<any> {
+    return this.http.get(`${BASE_URL}/forecast/daily`, {
+      params: {
+        city: city,
+        key: API_KEY,
+        days: 5 // Fetch the next 5 days
+      }
+    });
+  }
 }

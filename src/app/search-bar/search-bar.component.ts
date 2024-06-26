@@ -9,10 +9,15 @@ import { WeatherService } from '../weather.service';
 export class SearchBarComponent implements OnInit {
   @Output() weatherData = new EventEmitter<any>();
   suggestions: any[] = [];
+  showSearch = false;
 
   constructor(private weatherService: WeatherService) {}
 
   ngOnInit() {}
+
+  toggleSearch() {
+    this.showSearch = !this.showSearch;
+  }
 
   onSearch(event: any) {
     const query = event.target.value.toLowerCase();
@@ -28,5 +33,6 @@ export class SearchBarComponent implements OnInit {
   selectCity(city: any) {
     this.weatherData.emit(city);
     this.suggestions = [];
+    this.showSearch = false;
   }
 }

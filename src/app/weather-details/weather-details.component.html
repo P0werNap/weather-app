@@ -1,8 +1,28 @@
-<div *ngIf="weatherData">
+<div *ngIf="weatherData" class="weather-card">
   <h2>{{ weatherData.city_name }}</h2>
   <div>
     <h3>Current Weather</h3>
-    <p>{{ weatherData.temp }}°C, {{ weatherData.weather.description }}</p>
-    <img src="https://www.weatherbit.io/static/img/icons/{{ weatherData.weather.icon }}.png" alt="Weather Icon">
+    <div class="weather-details">
+      <p>{{ weatherData.temp }}°C, {{ weatherData.weather.description }}</p>
+      <img class="weather-icon" src="https://www.weatherbit.io/static/img/icons/{{ weatherData.weather.icon }}.png" alt="Weather Icon">
+    </div>
+  </div>
+  <div *ngIf="hourlyForecast.length" class="forecast-card">
+    <h3>Next Hours</h3>
+    <div class="forecast-hours">
+      <div class="forecast-hour" *ngFor="let hour of hourlyForecast">
+        <p>{{ hour.timestamp_local | date:'shortTime' }} - {{ hour.temp }}°C</p>
+        <img class="weather-icon" src="https://www.weatherbit.io/static/img/icons/{{ hour.weather.icon }}.png" alt="Weather Icon">
+      </div>
+    </div>
+  </div>
+  <div *ngIf="dailyForecast.length" class="forecast-card">
+    <h3>Next 5 Days</h3>
+    <div class="forecast-days">
+      <div class="forecast-day" *ngFor="let day of dailyForecast">
+        <p>{{ day.valid_date | date:'fullDate' }} - {{ day.temp }}°C</p>
+        <img class="weather-icon" src="https://www.weatherbit.io/static/img/icons/{{ day.weather.icon }}.png" alt="Weather Icon">
+      </div>
+    </div>
   </div>
 </div>
