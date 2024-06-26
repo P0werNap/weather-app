@@ -7,24 +7,26 @@ import { WeatherService } from '../weather.service';
   styleUrls: ['./search-bar.component.css']
 })
 export class SearchBarComponent implements OnInit {
-  @Output() citySelected = new EventEmitter<string>();
-  cityMetadata: any[] = [];
+  @Output() weatherData = new EventEmitter<any>();
   suggestions: any[] = [];
 
   constructor(private weatherService: WeatherService) {}
 
-  async ngOnInit() {
-    const metadataResponse = await this.weatherService.getCityMetadata();
-    this.cityMetadata = metadataResponse.data;
-  }
+  ngOnInit() {}
 
   onSearch(event: any) {
     const query = event.target.value.toLowerCase();
-    this.suggestions = this.cityMetadata.filter(city => city.city_name.toLowerCase().includes(query));
+    if (query.length > 2) {
+      this.weatherService.getCurrentWeather(query).subscribe(data => {
+        this.suggestions = data.data; // Assuming 'data.data' contains the array of city weather data
+      });
+    } else {
+      this.suggestions = [];
+    }
   }
 
   selectCity(city: any) {
-    this.citySelected.emit(city.city_name);
+    this.weatherData.emit(city);
     this.suggestions = [];
   }
 }

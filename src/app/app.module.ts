@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { CityTabsComponent } from './city-tabs/city-tabs.component';
 import { WeatherDetailsComponent } from './weather-details/weather-details.component';
-import { ForecastComponent } from './forecast/forecast.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
+import { WeatherService } from './weather.service';
 
 @NgModule({
   declarations: [
@@ -15,16 +16,14 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
     HeaderComponent,
     CityTabsComponent,
     WeatherDetailsComponent,
-    ForecastComponent,
     SearchBarComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [
-    provideClientHydration()
-  ],
+  providers: [WeatherService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,8 +1,7 @@
 <header>
   Simple Weather
 </header>
-<app-search-bar (citySelected)="onCitySelected($event)"></app-search-bar>
-<app-city-tabs (citySelected)="onCitySelected($event)"></app-city-tabs>
+<app-search-bar (weatherData)="onWeatherDataReceived($event)"></app-search-bar>
 <div class="weather-container">
-  <app-weather-details [selectedCity]="selectedCity"></app-weather-details>
+  <app-weather-details [weatherData]="currentWeatherData"></app-weather-details>
 </div>

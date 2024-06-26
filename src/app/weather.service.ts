@@ -1,36 +1,26 @@
 import { Injectable } from '@angular/core';
-import axios from 'axios';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
-const API_KEY = '482944e26d320a80bd5e4f23b3de7d1f';
-const BASE_URL = 'https://api.openweathermap.org/data/2.5';
-const METADATA_URL = 'https://api.weatherbit.io/v2.0/meta/cities';
+const API_KEY = '3822b1a7b88b4abdb179ac452cd51cd0';
+const BASE_URL = 'https://api.weatherbit.io/v2.0';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WeatherService {
-  constructor() { }
+  constructor(private http: HttpClient) {}
 
-  async getWeatherData(city: string): Promise<WeatherData> {
-    const response = await axios.get(`${BASE_URL}/forecast`, {
+  getCurrentWeather(city: string): Observable<any> {
+    return this.http.get(`${BASE_URL}/current`, {
       params: {
-        q: city,
-        appid: API_KEY,
-        units: 'metric'
+        city: city,
+        key: API_KEY
       }
     });
-    return response.data;
-  }
-
-  async getCityMetadata(): Promise<any> {
-    const response = await axios.get(METADATA_URL, {
-      params: {
-        key: 'YOUR_WEATHERBIT_API_KEY'
-      }
-    });
-    return response.data;
   }
 }
+
 
 export interface WeatherData {
   list: {

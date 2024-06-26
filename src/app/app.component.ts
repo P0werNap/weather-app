@@ -6,9 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  selectedCity: string = '';
+  currentWeatherData: any;
 
-  onCitySelected(city: string) {
-    this.selectedCity = city;
+  onWeatherDataReceived(weatherData: any) {
+    this.currentWeatherData = weatherData;
   }
 }

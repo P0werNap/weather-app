@@ -1,6 +1,8 @@
 <div class="search-bar">
   <input type="text" (input)="onSearch($event)" placeholder="Search for a city...">
   <ul *ngIf="suggestions.length > 0">
-    <li *ngFor="let city of suggestions" (click)="selectCity(city)">{{ city.city_name }}</li>
+    <li *ngFor="let city of suggestions" (click)="selectCity(city)">
+      {{ city.city_name }}, {{ city.country_code }}
+    </li>
   </ul>
 </div>
