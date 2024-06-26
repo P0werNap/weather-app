@@ -1,1 +1,66 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f8ff;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #1e90ff;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  font-size: 1.5em;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-around;
+  background-color: #ffffff;
+  border-bottom: 2px solid #1e90ff;
+}
+
+nav ul li {
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+nav ul li:hover {
+  background-color: #1e90ff;
+  color: white;
+}
+
+.weather-container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.weather-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.weather-details:last-child {
+  border-bottom: none;
+}
+
+.weather-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.update-time {
+  text-align: right;
+  font-size: 0.9em;
+  color: #888;
+}

@@ -1,0 +1,20 @@
+<div *ngIf="weatherData">
+  <h2>{{ selectedCity }}</h2>
+  <div>
+    <h3>Next Hours</h3>
+    <div *ngFor="let hour of weatherData.list | slice:0:4" class="weather-details">
+      <p>{{ hour.dt_txt | date:'shortTime' }} - {{ hour.main.temp }}°C</p>
+      <img class="weather-icon" src="https://openweathermap.org/img/wn/{{ hour.weather[0].icon }}@2x.png" alt="Weather Icon">
+    </div>
+  </div>
+  <div>
+    <h3>Next 5 Days</h3>
+    <div *ngFor="let day of dailyForecast" class="weather-details">
+      <p>{{ day.date | date:'fullDate' }} - {{ day.temp }}°C</p>
+      <img class="weather-icon" src="https://openweathermap.org/img/wn/{{ day.weather[0].icon }}@2x.png" alt="Weather Icon">
+    </div>
+  </div>
+  <div class="update-time">
+    Last updated on {{ weatherData.list[0].dt_txt | date:'medium' }}
+  </div>
+</div>
