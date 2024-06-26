@@ -52,3 +52,17 @@ header .title {
   margin: 20px auto;
   padding: 20px;
 }
+
+@media (max-width: 600px) {
+  .city-tabs ul {
+    flex-direction: column;
+  }
+
+  .city-tabs li {
+    margin: 5px 0;
+  }
+
+  .weather-container {
+    padding: 10px;
+  }
+}

@@ -36,22 +36,86 @@
 
 .forecast-hours {
   display: flex;
-  overflow-x: scroll;
+  overflow-x: auto;
+  padding: 10px 0;
 }
 
 .forecast-hour {
   flex: 0 0 auto;
-  width: 100px;
+  width: 80px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.forecast-hour .temp {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.forecast-hour .precipitation {
+  font-size: 14px;
+  color: #1e90ff;
+}
+
+.forecast-hour .time {
+  font-size: 14px;
+  color: gray;
 }
 
 .forecast-days {
   display: flex;
   flex-direction: column;
+  gap: 15px; /* Added gap to ensure equal spacing */
 }
 
 .forecast-day {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.forecast-day .day-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center align text */
+  margin-left: 10px;
+}
+
+.forecast-day .day {
+  font-weight: bold;
+}
+
+.forecast-day .description {
+  color: gray;
+  font-size: 14px;
+}
+
+.forecast-day .temp-range {
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: auto;
+}
+
+@media (max-width: 600px) {
+  .weather-card {
+    padding: 10px;
+  }
+
+  .forecast-hours {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .forecast-hour {
+    width: 100px;
+  }
+
+  .forecast-day {
+    padding: 5px 0;
+  }
 }

@@ -3,7 +3,7 @@
   <div>
     <h3>Current Weather</h3>
     <div class="weather-details">
-      <p>{{ weatherData.temp }}°C, {{ weatherData.weather.description }}</p>
+      <p>{{ weatherData.temp | number:'1.0-0' }}°C, {{ weatherData.weather.description }}</p>
       <img class="weather-icon" src="https://www.weatherbit.io/static/img/icons/{{ weatherData.weather.icon }}.png" alt="Weather Icon">
     </div>
   </div>
@@ -11,8 +11,10 @@
     <h3>Next Hours</h3>
     <div class="forecast-hours">
       <div class="forecast-hour" *ngFor="let hour of hourlyForecast">
-        <p>{{ hour.timestamp_local | date:'shortTime' }} - {{ hour.temp }}°C</p>
+        <p class="temp">{{ hour.temp | number:'1.0-0' }}°</p>
+        <p class="precipitation">{{ hour.pop }}%</p>
         <img class="weather-icon" src="https://www.weatherbit.io/static/img/icons/{{ hour.weather.icon }}.png" alt="Weather Icon">
+        <p class="time">{{ hour.timestamp_local | date:'shortTime' }}</p>
       </div>
     </div>
   </div>
@@ -20,8 +22,12 @@
     <h3>Next 5 Days</h3>
     <div class="forecast-days">
       <div class="forecast-day" *ngFor="let day of dailyForecast">
-        <p>{{ day.valid_date | date:'fullDate' }} - {{ day.temp }}°C</p>
         <img class="weather-icon" src="https://www.weatherbit.io/static/img/icons/{{ day.weather.icon }}.png" alt="Weather Icon">
+        <div class="day-details">
+          <p class="day">{{ day.valid_date | date:'EEE, MMM d' }}</p>
+          <p class="description">{{ day.weather.description }}</p>
+        </div>
+        <p class="temp-range">{{ day.max_temp | number:'1.0-0' }}° / {{ day.min_temp | number:'1.0-0' }}°</p>
       </div>
     </div>
   </div>

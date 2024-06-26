@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const API_KEY = '';
+const API_KEY = '003072e027e2476e878b7a1d0ca36096';
 const BASE_URL = 'https://api.weatherbit.io/v2.0';
 
 @Injectable({
